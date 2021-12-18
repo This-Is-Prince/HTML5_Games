@@ -187,9 +187,20 @@ const customizingDrawingStyles = (context: CanvasRenderingContext2D) => {
 /**
  * Drawing Images Functions
  */
+
+/**
+ * We can draw images and sprites on the canvas using the drawImage() method. The context provides us with three different versions of this method:
+ */
+// . drawImage(image, x, y)
+// Draws the images on the canvas at (x, y)
+// . drawImage(image, x, y, width, height)
+// Scales the image to the specified width and height and then draws it at (x, y)
+// . drawImage(image, sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height)
+// Clips a rectangle from the image at (sourceX, sourceY) with dimensions(sourceWidth, sourceHeight), scales it to the specified width and height, and draws it on the canvas at (x, y)
+
 const drawingImages = (context: CanvasRenderingContext2D) => {
   /**
-   * Listing 1-8. Drawing Images
+   * 1-8. Drawing Images
    */
   // DRAWING IMAGES
   // Get a handle to the Image object
@@ -198,8 +209,38 @@ const drawingImages = (context: CanvasRenderingContext2D) => {
   image.onload = () => {
     // Draw the image at (0, 350)
     context.drawImage(image, 0, 0);
+
+    // Scale the image to half the original size
+    // context.drawImage(image, 0, 0, 400, 400);
+
+    // Draw part of the image
+    context.drawImage(image, 350, 100, 50, 50, 0, 440, 100, 100);
   };
 };
+
+/**
+ * Transforming and Rotating Functions
+ */
+
+/**
+ * The context object has several methods for transforming the coordinate system used for drawing elements.
+ * These methods are
+ */
+// . translate(x, y)
+// Moves the canvas and its origin to a different point(x, y)
+// . rotate(angle)
+// Rotates the canvas clockwise around the current origin by angle
+// . scale(x, y)
+// Scales the objects drawn by a multiple of x and y along the respective
+
+/**
+ * A common use of these methods is to rotate objects or sprites when drawing them. We can do this by
+ */
+// . Translating the canvas origin to the location of the object
+// . Rotating the canvas by the desired angle
+// . Drawing the object
+// . Restoring the canvas back to its original state
+const transformingAndRotating = (context: CanvasRenderingContext2D) => {};
 
 /**
  * Use Canvas
