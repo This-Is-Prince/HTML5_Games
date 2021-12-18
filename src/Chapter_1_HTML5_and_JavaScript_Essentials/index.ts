@@ -13,7 +13,6 @@ const drawingRectangles = (context: CanvasRenderingContext2D) => {
   /**
    * 1-4. Drawing Rectangles Inside the Canvas
    */
-
   // FILLED RECTANGLES
   // Draw a solid square with width and height of 100 pixels at (200,10)
   context.fillRect(200, 10, 100, 100);
@@ -111,6 +110,98 @@ const drawingComplexPaths = (context: CanvasRenderingContext2D) => {
 };
 
 /**
+ * Drawing Text Functions
+ */
+
+/**
+ * The context also provides us with two methods for drawing text on the canvas:
+ */
+// . strokeText(text, x, y)
+// Draws an outline of the text at (x, y)
+// fillText(text, x, y)
+// Fills out the text at (x, y)
+
+const drawingText = (context: CanvasRenderingContext2D) => {
+  /**
+   * 1-6. Drawing Text Inside the Canvas
+   */
+  // DRAWING TEXT
+  context.fillText("This is some text...", 330, 40);
+
+  // Modify the font
+  context.font = "10pt Arial";
+  context.fillText("This is in 10pt Arial...", 330, 60);
+
+  // Draw stroked text
+  context.font = "16pt Arial";
+  context.strokeText("This is stroked in 16pt Arial...", 330, 80);
+};
+
+/**
+ * Customizing Drawing Styles (Colors and Textures) Functions
+ */
+
+/**
+ * If we want to apply colors to a shape, there are two important properties we can use:
+ */
+// . fillStyle:Sets the default color for all future fill operations
+// . strokeStyle:Sets the default color for all future stroke operations
+const customizingDrawingStyles = (context: CanvasRenderingContext2D) => {
+  /**
+   * 1-7. Drawing with Colors and Textures
+   */
+  // FILL STYLES AND COLORS
+  // Set fill color to red
+  context.fillStyle = "red";
+  // Draw a red filled rectangle
+  context.fillRect(310, 160, 100, 50);
+
+  // Set stroke color to green
+  context.strokeStyle = "green";
+  // Draw a green stroked rectangle
+  context.strokeRect(310, 240, 100, 50);
+
+  // Set fill color to yellow using rgb()
+  context.fillStyle = "rgb(255, 255, 0)";
+  // Draw a yellow filled rectangle
+  context.fillRect(420, 160, 100, 50);
+
+  // Set fill color to green with an alpha of 0.6
+  context.fillStyle = "rgba(0, 255 ,0 , 0.6)";
+  // Draw a semi-transparent green filled rectangle
+  context.fillRect(450, 180, 100, 50);
+
+  // TEXTURES
+  // Get a handle to the Image object
+  const image = document.createElement("img");
+  image.src = "./static/dragon-1.jpg";
+  image.onload = () => {
+    const pattern = context.createPattern(image, "repeat") as CanvasPattern;
+    // Set fill style to newly created pattern
+    context.fillStyle = pattern;
+    // Draw a pattern filled rectangle
+    context.fillRect(420, 240, 130, 50);
+  };
+};
+
+/**
+ * Drawing Images Functions
+ */
+const drawingImages = (context: CanvasRenderingContext2D) => {
+  /**
+   * Listing 1-8. Drawing Images
+   */
+  // DRAWING IMAGES
+  // Get a handle to the Image object
+  const image = document.createElement("img");
+  image.src = "./static/dragon.jpg";
+  image.onload = () => {
+    // Draw the image at (0, 350)
+    context.drawImage(image, 0, 0);
+  };
+};
+
+/**
  * Use Canvas
  */
 const updateCanvasSize = (canvas: HTMLCanvasElement) => {
@@ -121,11 +212,11 @@ const useCanvas = () => {
   // Get a handle to the canvas object
   const canvas = document.getElementById("canvas") as HTMLCanvasElement;
   updateCanvasSize(canvas);
+  // Get the 2d context for this canvas
+  const context = canvas.getContext("2d") as CanvasRenderingContext2D;
 
   window.addEventListener("resize", () => {
     updateCanvasSize(canvas);
-    context.fillStyle = "white";
-    context.strokeStyle = "white";
 
     /**
      * Drawing Rectangles
@@ -135,13 +226,24 @@ const useCanvas = () => {
     /**
      * Drawing Complex Paths
      */
-    drawingComplexPaths(context);
+    // drawingComplexPaths(context);
+
+    /**
+     * Drawing Text
+     */
+    // drawingText(context);
+
+    /**
+     * Customizing Drawing Styles (Colors and Textures)
+     */
+    // customizingDrawingStyles(context);
+
+    /**
+     * Drawing Images
+     */
+    drawingImages(context);
   });
 
-  // Get the 2d context for this canvas
-  const context = canvas.getContext("2d") as CanvasRenderingContext2D;
-  context.fillStyle = "white";
-  context.strokeStyle = "white";
   // Our drawing code here...
 
   /**
@@ -152,7 +254,22 @@ const useCanvas = () => {
   /**
    * Drawing Complex Paths
    */
-  drawingComplexPaths(context);
+  // drawingComplexPaths(context);
+
+  /**
+   * Drawing Text
+   */
+  // drawingText(context);
+
+  /**
+   * Customizing Drawing Styles (Colors and Textures)
+   */
+  // customizingDrawingStyles(context);
+
+  /**
+   * Drawing Images
+   */
+  drawingImages(context);
 };
 
 // On window load we run useCanvas function
