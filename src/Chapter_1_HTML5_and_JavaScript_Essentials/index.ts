@@ -118,7 +118,7 @@ const drawingComplexPaths = (context: CanvasRenderingContext2D) => {
  */
 // . strokeText(text, x, y)
 // Draws an outline of the text at (x, y)
-// fillText(text, x, y)
+// . fillText(text, x, y)
 // Fills out the text at (x, y)
 
 const drawingText = (context: CanvasRenderingContext2D) => {
@@ -240,7 +240,86 @@ const drawingImages = (context: CanvasRenderingContext2D) => {
 // . Rotating the canvas by the desired angle
 // . Drawing the object
 // . Restoring the canvas back to its original state
-const transformingAndRotating = (context: CanvasRenderingContext2D) => {};
+const transformingAndRotating = (context: CanvasRenderingContext2D) => {
+  /**
+   * 1-9. Rotating Objects Before Drawing Them
+   */
+  const image = new Image();
+  image.src = "./static/dragon.jpg";
+  image.onload = () => {
+    // ROTATION AND TRANSLATION
+    // Translate origin to location of object
+    // context.translate(250, 370);
+    // // Rotate about the new origin by 60 degrees
+    // context.rotate(Math.PI / 3);
+    // const width = image.width;
+    // const height = image.height;
+    // context.drawImage(
+    //   image,
+    //   0,
+    //   0,
+    //   width,
+    //   height,
+    //   -30,
+    //   -25,
+    //   width / 2,
+    //   height / 2
+    // );
+    // //  Restore to original state by rotating and translating back
+    // context.rotate(-Math.PI / 3);
+    // context.translate(-250, -370);
+    // // Translate origin to location of object
+    // context.translate(300, 370);
+    // // Rotate about the new origin
+    // context.rotate((3 / 4) * Math.PI);
+    // context.drawImage(
+    //   image,
+    //   0,
+    //   0,
+    //   width,
+    //   height,
+    //   -30,
+    //   -25,
+    //   width / 2,
+    //   height / 2
+    // );
+    // // Restore to original state by rotating and translating back
+    // context.rotate((-3 * Math.PI) / 4);
+    // context.translate(-300, -370);
+
+    const canvasWidth = window.innerWidth;
+    const canvasHeight = window.innerHeight;
+    context.save();
+    context.translate(canvasWidth / 2, canvasHeight / 2);
+    context.rotate(Math.PI * 0.25);
+
+    const imageWidth = image.width;
+    const imageHeight = image.height;
+    context.drawImage(
+      image,
+      0,
+      0,
+      imageWidth,
+      imageHeight,
+      0,
+      0,
+      imageWidth / 2,
+      imageHeight / 2
+    );
+    context.restore();
+    context.drawImage(
+      image,
+      0,
+      0,
+      imageWidth,
+      imageHeight,
+      0,
+      0,
+      imageWidth / 2,
+      imageHeight / 2
+    );
+  };
+};
 
 /**
  * Use Canvas
@@ -282,7 +361,12 @@ const useCanvas = () => {
     /**
      * Drawing Images
      */
-    drawingImages(context);
+    // drawingImages(context);
+
+    /**
+     * Transforming and Rotating
+     */
+    // transformingAndRotating(context);
   });
 
   // Our drawing code here...
@@ -310,7 +394,12 @@ const useCanvas = () => {
   /**
    * Drawing Images
    */
-  drawingImages(context);
+  // drawingImages(context);
+
+  /**
+   * Transforming and Rotating
+   */
+  // transformingAndRotating(context);
 };
 
 // On window load we run useCanvas function
