@@ -322,6 +322,60 @@ const transformingAndRotating = (context: CanvasRenderingContext2D) => {
 };
 
 /**
+ * Audio
+ */
+const audio = (context: CanvasRenderingContext2D) => {
+  /**
+   * 1-12. Dynamically loading an Audio File
+   */
+  // // Create a new Audio Object
+  // const sound = new Audio();
+  // // Select the source of the sound
+  // sound.src = "./static/The_Rains_of_Castamere-1.m4a";
+  // // This will only work on browsers that support m4a
+
+  // // Play the sound
+  // sound.play();
+
+  /**
+   * Testing for Audio Support
+   */
+  const audio = document.createElement("audio");
+  let m4aSupport: boolean;
+  if ("canPlayType" in audio) {
+    // Currently canPlayType() returns: "", "maybe", or "probably"
+    m4aSupport = "" !== audio.canPlayType("audio/mp4");
+  } else {
+    // The audio is not supported
+    m4aSupport = false;
+  }
+
+  // Check for m4a and finally set soundFileExtension to undefined
+  const soundFileExtension = m4aSupport ? ".m4a" : undefined;
+
+  // if (soundFileExtension) {
+  //   const sound = new Audio();
+  //   // Load sound file with the detected extension
+  //   sound.src = "./static/The_Rains_Of_Castamere" + soundFileExtension;
+  //   sound.play();
+  // }
+
+  /**
+   * 1-14. Waiting for an Audio File to Load
+   */
+  // Play the sound after waiting for it to load
+  if (soundFileExtension) {
+    const sound = new Audio();
+    sound.addEventListener("canplaythrough", function () {
+      // this.play();
+    });
+
+    // Load sound file with the detected extension
+    sound.src = "./static/The_Rains_Of_Castamere" + soundFileExtension;
+  }
+};
+
+/**
  * Use Canvas
  */
 const updateCanvasSize = (canvas: HTMLCanvasElement) => {
@@ -367,6 +421,11 @@ const useCanvas = () => {
      * Transforming and Rotating
      */
     // transformingAndRotating(context);
+
+    /**
+     * Audio
+     */
+    audio(context);
   });
 
   // Our drawing code here...
@@ -400,6 +459,11 @@ const useCanvas = () => {
    * Transforming and Rotating
    */
   // transformingAndRotating(context);
+
+  /**
+   * Audio
+   */
+  audio(context);
 };
 
 // On window load we run useCanvas function
