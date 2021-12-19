@@ -376,6 +376,71 @@ const audio = (context: CanvasRenderingContext2D) => {
 };
 
 /**
+ * Image Loading
+ */
+class ImageLoader {
+  private loaded: boolean;
+  private loadedImages: number;
+  private totalImages: number;
+
+  private constructor() {
+    this.loaded = true;
+    this.loadedImages = 0;
+    this.totalImages = 0;
+  }
+  load(url: string) {
+    this.totalImages++;
+    this.loaded = false;
+    const image = new Image();
+    image.src = url;
+    image.onload = () => {
+      this.loadedImages++;
+      if (this.loadedImages === this.totalImages) {
+        this.loaded = true;
+      }
+      image.onload = null;
+    };
+    return image;
+  }
+  static loader() {
+    return new ImageLoader();
+  }
+}
+const imageLoad = (context: CanvasRenderingContext2D) => {
+  /**
+   * 1-18. Simple Image Loader
+   */
+  // const imageLoader = new ImageLoader();
+  const imageLoader = ImageLoader.loader();
+  imageLoader.load("./static/dragon-2.jpg");
+};
+
+/**
+ * Sprite Sheets
+ */
+const spriteSheets = (context: CanvasRenderingContext2D) => {
+  /**
+   * 1-20. Drawing an Image Loaded in a Sprite Sheet
+   */
+  // First: (Load single sprite sheet image)
+  // Nine arguments: the element, source (x, y) coordinates,
+  // source width and height (for cropping),
+  // destination (x, y) coordinates, and
+  // destination width and height (resize)
+  // context.drawImage(
+  //   spriteImage,
+  //   imageWidth * imageNumber,
+  //   0,
+  //   imageWidth,
+  //   imageHeight,
+  //   x,
+  //   y,
+  //   imageWidth,
+  //   imageHeight
+  // );
+};
+
+/**
  * Use Canvas
  */
 const updateCanvasSize = (canvas: HTMLCanvasElement) => {
@@ -425,7 +490,17 @@ const useCanvas = () => {
     /**
      * Audio
      */
-    audio(context);
+    // audio(context);
+
+    /**
+     * Image Loading
+     */
+    // imageLoad(context);
+
+    /**
+     * Sprite Sheets
+     */
+    spriteSheets(context);
   });
 
   // Our drawing code here...
@@ -463,7 +538,17 @@ const useCanvas = () => {
   /**
    * Audio
    */
-  audio(context);
+  // audio(context);
+
+  /**
+   * Image Loading
+   */
+  // imageLoad(context);
+
+  /**
+   * Sprite Sheets
+   */
+  spriteSheets(context);
 };
 
 // On window load we run useCanvas function
