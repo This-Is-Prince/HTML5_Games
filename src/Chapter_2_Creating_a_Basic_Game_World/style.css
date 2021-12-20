@@ -1,0 +1,29 @@
+body {
+  background: #000900;
+  /* Prevent the ugly blue highlighting from accidental selection of text */
+  user-select: none;
+}
+#wrapper {
+  position: absolute;
+}
+#gamecontainer {
+  /* Set game container width , height, and background */
+  width: 640px;
+  height: 480px;
+  background: url(../../static/images/splashscreen.png);
+}
+.gamelayer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: none;
+}
+/* Game Starting Menu Screen */
+#gamestartscreen {
+  padding-top: 250px;
+  text-align: center;
+}
+#gamestartscreen img {
+  margin: 10px;
+  cursor: pointer;
+}
