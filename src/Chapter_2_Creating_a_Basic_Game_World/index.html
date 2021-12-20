@@ -9,9 +9,58 @@
     <script src="./index.ts" defer></script>
   </head>
   <body>
-    <canvas id="canvas">
-      Your Browser does not support HTML5 Canvas. Please shift to a newer
-      browser.
-    </canvas>
+    <div id="wrapper">
+      <!-- Game Container -->
+      <main id="gamecontainer">
+        <!-- Game Canvas -->
+        <canvas id="canvas" width="640" height="480" class="gamelayer">
+        </canvas>
+
+        <!-- Game Score Screen -->
+        <section id="scorescreen" class="gamelayer">
+          <img
+            id="togglemusic"
+            src="./static/images/icons/sound.png"
+            alt="Toggle Music"
+          />
+          <img src="./static/images/icons/prev.png" alt="Restart Level " />
+          <span id="score">Score: 0</span>
+        </section>
+
+        <!-- Game Start Screen -->
+        <section id="gamestartscreen" class="gamelayer">
+          <img src="./static/images/icons/play.png" alt="Play Game" />
+          <br />
+          <img src="./static/images/icons/settings.png" alt="Settings" />
+        </section>
+
+        <!-- Game Level Select Screen -->
+        <section id="levelselectscreen" class="gamelayer"></section>
+
+        <!-- Game Loading Screen -->
+        <section id="loadingscreen" class="gamelayer">
+          <article id="loadingmessage"></article>
+        </section>
+
+        <!-- Game Ending Screen -->
+        <section id="endingscreen" class="gamelayer">
+          <article>
+            <p id="endingmessage">The Level Is Over Message</p>
+            <p id="playcurrentlevel" class="endingoption">
+              <img src="./static/images/icons/prev.png" alt="Replay" />
+              Replay Current Level
+            </p>
+            <p id="playnextlevel" class="endingoption">
+              <img src="./static/images/icons/next.png" alt="Next" />
+              Play Next Level
+            </p>
+            <p id="returntolevelscreen" class="endingoption">
+              <img src="./static/images/icons/return.png" alt="Return" />
+              Return to Level Screen
+            </p>
+          </article>
+        </section>
+      </main>
+    </div>
   </body>
 </html>
