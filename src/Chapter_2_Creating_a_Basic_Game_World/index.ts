@@ -71,6 +71,19 @@ class Game {
     // Hide all game layers and display the start screen
     this.hideScreens();
     this.showScreen("gamestartscreen");
+
+    const gamestartscreen = document.getElementById(
+      "gamestartscreen"
+    ) as HTMLDivElement;
+    const children = gamestartscreen.children;
+    for (let i = 0; i < children.length; i++) {
+      const child = children[i] as HTMLElement;
+      if (child instanceof HTMLImageElement && child.alt === "Play Game") {
+        child.addEventListener("click", () => {
+          this.showLevelScreen();
+        });
+      }
+    }
   }
   hideScreens() {
     const screens = document.getElementsByClassName(
@@ -94,6 +107,12 @@ class Game {
       | HTMLDivElement
       | HTMLCanvasElement;
     screen.style.display = "block";
+  }
+  showLevelScreen() {
+    console.log("hi");
+
+    this.hideScreens();
+    this.showScreen("levelselectscreen");
   }
 }
 

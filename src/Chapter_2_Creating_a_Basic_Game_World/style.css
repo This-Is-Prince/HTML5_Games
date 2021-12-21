@@ -42,3 +42,24 @@ body {
   margin: 10px;
   cursor: pointer;
 }
+
+#levelselectscreen {
+  padding-top: 150px;
+  padding-left: 50px;
+}
+#levelselectscreen input {
+  margin: 20px;
+  cursor: pointer;
+
+  background: url(../../static/images/icons/level.png) no-repeat;
+  color: yellow;
+  font-size: 20px;
+
+  width: 64px;
+  height: 64px;
+
+  border: none;
+
+  /* Remove the default blue border when and input is selected */
+  outline: none;
+}
