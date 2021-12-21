@@ -1,16 +1,30 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
 body {
   background: #000900;
   /* Prevent the ugly blue highlighting from accidental selection of text */
   user-select: none;
+  min-height: 100vh;
 }
 #wrapper {
   position: absolute;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #gamecontainer {
   /* Set game container width , height, and background */
-  width: 640px;
-  height: 480px;
+  width: 75%;
   background: url(../../static/images/splashscreen.png);
+  background-size: contain;
+  position: relative;
+  aspect-ratio: 4/3;
 }
 .gamelayer {
   width: 100%;
@@ -22,6 +36,7 @@ body {
 #gamestartscreen {
   padding-top: 250px;
   text-align: center;
+  height: calc(100% - 250px);
 }
 #gamestartscreen img {
   margin: 10px;
